@@ -1,9 +1,14 @@
 " refs: https://github.com/methane/dotfiles
 " coding: utf-8
-set nocompatible
 let mapleader = ","
 
 set number
+set list
+set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
+
+imap { {}<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
 
 " always show tabline
 if exists('&background')
@@ -18,29 +23,8 @@ set completeopt=menu,preview
 
 """ plugins
 
-let g:agprg='ag --column'
-let g:khuno_ignore='E123,E126,E127,E302,E501'
-let g:khuno_max_line_length=99
-
 
 "let g:gofmt_command = 'goimports'
-
-let g:markdown_fenced_languages = [
-\  'css',
-\  'javascript',
-\  'js=javascript',
-\  'json=javascript',
-\  'ruby',
-\  'html',
-\  'python',
-\]
-
-let g:ctrlp_extensions = ['buffer', 'line']
-let g:ctrlp_clear_cache_on_exit = 1
-
-set t_Co=256
-
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
 if isdirectory(expand('~/.vim/bundle/neobundle.vim/')) &&  has('vim_starting')
 set rtp+=~/.vim/bundle/neobundle.vim/
@@ -63,23 +47,16 @@ endif
 NeoBundle 'rking/ag.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle "ctrlpvim/ctrlp.vim"
-NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'scrooloose/nerdtree'
-let g:vim_markdown_folding_disabled=1
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " Color
 NeoBundle 'tomasr/molokai'
 
 call neobundle#end()
 endif
-
-
-au BufNewFile,BufRead *.md  setlocal wrap ft=markdown
-au BufNewFile,BufRead *.tsv setlocal noexpandtab ts=16
-au BufNewFile,BufRead *.go  setlocal noexpandtab ts=4
-au BufNewFile,BufRead *.cs  setlocal noexpandtab ts=4
-au FileType gitconfig setlocal ts=8 noexpandtab
 
 set wildignore+=vendor/*
 
@@ -92,14 +69,10 @@ nmap    <C-a> [unite]
 let g:unite_source_history_yank_enable =1
 nnoremap <silent> [unite]u :<C-u>Unite<Space>file<CR>
 nnoremap <silent> [unite]g :<C-u>Unite<Space>grep<CR>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
-nnoremap <silent> [unite]h :<C-u>Unite<Space>history/yank<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]c :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,vr :UniteResume<CR>
+
+let g:indent_guides_enable_on_vim_startup = 1
+
 " vinarise
 let g:vinarise_enable_auto_detect = 1 
 " unite-build map
@@ -109,15 +82,26 @@ nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
 
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_grep_max_candidates = 200
 let g:unite_source_grep_recursive_opt = ''
-vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+let g:unite_source_grep_max_candidates = 200
 
 
 " go err highlight
 au FileType go :highlight goErr cterm=bold ctermfg=214
 au FileType go :match goErr /\<err\>/
 
+" fugitive
+autocmd QuickFixCmdPost *grep* cwindow
+set statusline+=%{fugitive#statusline()}
+
+au BufNewFile,BufRead *.go  setlocal noexpandtab ts=4
+
+if has("autocmd")
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal! g'\"" |
+    \ endif
+endif
 
 " :CdCurrent
 "   Change current directory to current file's one.
