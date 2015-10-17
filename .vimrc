@@ -2,11 +2,30 @@
 " coding: utf-8
 let mapleader = ","
 
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,cp932,euc-jp,ucs-2le,ucs-2
+" set paste
+set showcmd
 set number
-set list
-set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
+set cursorline
+set ruler
+set showmode
 
-imap { {}<LEFT>
+"-------Format--------
+set autoindent
+set smartindent
+set cindent
+
+"-------Search--------
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
+set hlsearch
+
+
+imap {<ENTER> {}<LEFT><CR><ESC><S-o><DEL>
 imap [ []<LEFT>
 imap ( ()<LEFT>
 
@@ -24,7 +43,7 @@ set completeopt=menu,preview
 """ plugins
 
 
-"let g:gofmt_command = 'goimports'
+let g:gofmt_command = 'goimports'
 
 if isdirectory(expand('~/.vim/bundle/neobundle.vim/')) &&  has('vim_starting')
 set rtp+=~/.vim/bundle/neobundle.vim/
@@ -47,10 +66,14 @@ endif
 NeoBundle 'rking/ag.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
+
 
 " Color
 NeoBundle 'tomasr/molokai'
@@ -59,16 +82,20 @@ call neobundle#end()
 endif
 
 set wildignore+=vendor/*
+set wildignore+=_vendor/*
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
 " The prefix key.
 nnoremap    [unite]   <Nop>
-nmap    <C-a> [unite]
+nmap    <C-u> [unite]
 
 " unite.vim keymap
 let g:unite_source_history_yank_enable =1
+let g:unite_split_rule = 'botright'
 nnoremap <silent> [unite]u :<C-u>Unite<Space>file<CR>
 nnoremap <silent> [unite]g :<C-u>Unite<Space>grep<CR>
+nnoremap <silent> [unite]o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
 
 let g:indent_guides_enable_on_vim_startup = 1
@@ -85,6 +112,14 @@ let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opt = ''
 let g:unite_source_grep_max_candidates = 200
 
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=1
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
+let g:indent_guides_color_change_percent = 50
+let g:indent_guides_guide_size = 1
 
 " go err highlight
 au FileType go :highlight goErr cterm=bold ctermfg=214
@@ -92,9 +127,11 @@ au FileType go :match goErr /\<err\>/
 
 " fugitive
 autocmd QuickFixCmdPost *grep* cwindow
-set statusline+=%{fugitive#statusline()}
 
-au BufNewFile,BufRead *.go  setlocal noexpandtab ts=4
+" vim-gitgutter
+let g:gitgutter_diff_args = '-w'
+
+au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
 
 if has("autocmd")
     autocmd BufReadPost *
