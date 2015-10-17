@@ -3,44 +3,18 @@
 set nocompatible
 let mapleader = ","
 
-set scrolloff=8
-set backspace=indent,eol,start
-set smartindent
-set cindent
-set nobackup
-set noswapfile
-set tabstop=8
-set shiftwidth=0
-set softtabstop=0
-" no indent for case: , public:
-set cino=:0,g0,t0
-set nowrap
-set showcmd
-set cmdheight=1
-set ignorecase
-set tags=tags;/
-set nowrapscan
-set lazyredraw
-set expandtab
-" always show statusline
-set laststatus=2
-set noerrorbells
-" bell->vbell & vbell=none
-set visualbell t_vb=
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-set whichwrap=b,s,h,l,<,>,[,]
-set textwidth=0
-set ttyfast
+set number
 
 " always show tabline
-set showtabline=2
 if exists('&background')
     set background=dark " dark or light
 endif
 
-set fencs=utf-8,iso-2022-jp,euc-jp,cp932
 set formatoptions+=mM
 set undodir=~/var/vim'
+
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
 
 """ plugins
 
@@ -60,36 +34,6 @@ let g:markdown_fenced_languages = [
 \  'html',
 \  'python',
 \]
-
-noremap tt :TagbarToggle<CR>
-
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
 
 let g:ctrlp_extensions = ['buffer', 'line']
 let g:ctrlp_clear_cache_on_exit = 1
@@ -119,7 +63,7 @@ endif
 NeoBundle 'rking/ag.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Shougo/unite.vim'
-" NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle "ctrlpvim/ctrlp.vim"
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'scrooloose/nerdtree'
 let g:vim_markdown_folding_disabled=1
@@ -170,7 +114,7 @@ let g:unite_source_grep_recursive_opt = ''
 vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 
 
-" go highlight
+" go err highlight
 au FileType go :highlight goErr cterm=bold ctermfg=214
 au FileType go :match goErr /\<err\>/
 
