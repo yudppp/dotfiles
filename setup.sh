@@ -1,6 +1,7 @@
 #!/bin/sh
 go get -u github.com/nsf/gocode
 go get -u code.google.com/p/rog-go/exp/cmd/godef
+brew install ag
 
 mkdir -p ~/.vim/bundle
 cd ~/.vim/bundle/

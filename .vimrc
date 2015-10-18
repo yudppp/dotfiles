@@ -26,10 +26,10 @@ set hlsearch
 imap <C-f> <C-x><C-o>
 
 " disable arrow keys
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
+nmap   <Up>     <NOP>
+nmap   <Down>   <NOP>
+nmap   <Left>   <NOP>
+nmap   <Right>  <NOP>
 
 " always show tabline
 if exists('&background')
@@ -61,6 +61,7 @@ NeoBundle 'Shougo/vimproc.vim', {
       \    },
       \ }
 NeoBundle 'Shougo/neosnippet'
+NeoBundle "Shougo/neosnippet-snippets"
 if has('lua')
     NeoBundle 'Shougo/neocomplete'
 endif
@@ -137,6 +138,10 @@ au QuickFixCmdPost *grep* cwindow
 
 " vim-gitgutter
 let g:gitgutter_diff_args = '-w'
+
+" neosnippet
+imap <C-s> <Plug>(neosnippet_expand_or_jump)
+smap <C-s> <Plug>(neosnippet_expand_or_jump)
 
 if has("autocmd")
     au BufReadPost *
