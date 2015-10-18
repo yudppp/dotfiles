@@ -23,10 +23,13 @@ set wrapscan
 set hlsearch
 
 
-imap {<ENTER> {}<LEFT><CR><ESC><S-o><DEL>
-imap [ []<LEFT>
-imap ( ()<LEFT>
 imap <C-f> <C-x><C-o>
+
+" disable arrow keys
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
 
 " always show tabline
 if exists('&background')
@@ -40,14 +43,14 @@ exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
 """ plugins
-
-
 let g:gofmt_command = 'goimports'
 
 if isdirectory(expand('~/.vim/bundle/neobundle.vim/')) &&  has('vim_starting')
 set rtp+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'Shougo/neobundle.vim'
+
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
@@ -72,6 +75,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
+" NeoBundle 'Townk/vim-autoclose'
 
 " Color
 NeoBundle 'tomasr/molokai'
@@ -121,7 +125,9 @@ let g:indent_guides_color_change_percent = 50
 let g:indent_guides_guide_size = 1
 
 " go setting
+au FileType go imap {<ENTER> {}<LEFT><CR><ESC><S-o>
 au FileType go nmap <C-k> <Plug>(go-def-vertical)
+au FileType go nmap <C-b> <Plug>(go-build)
 au FileType go :highlight goErr cterm=bold ctermfg=214
 au FileType go :match goErr /\<err\>/
 au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
@@ -143,8 +149,8 @@ endif
 "   Change current directory to current file's one.
 command! -nargs=0 CdCurrent cd %:p:h
 
+NeoBundleCheck
+
 colorscheme molokai
 syntax on
 filetype plugin indent on
-
-NeoBundleCheck
