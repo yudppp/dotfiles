@@ -1,6 +1,7 @@
 " coding: utf-8
 let mapleader = ","
 
+"-------Basic--------
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,ucs-2le,ucs-2
@@ -8,7 +9,12 @@ set showcmd
 set number
 set cursorline
 set ruler
-set showmode
+set wildmenu
+set noshowmode
+set tabstop=4
+set shiftwidth=4
+set laststatus=2
+set noexpandtab
 
 "-------Format--------
 set autoindent
@@ -76,7 +82,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
-" NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'itchyny/lightline.vim'
 
 " Color
 NeoBundle 'tomasr/molokai'
@@ -128,8 +134,7 @@ let g:indent_guides_guide_size = 1
 " go setting
 au FileType go imap {<ENTER> {}<LEFT><CR><ESC><S-o>
 au FileType go nmap <C-k> <Plug>(go-def-vertical)
-au FileType go nmap <C-b> <Plug>(go-build)
-au FileType go :highlight goErr cterm=bold ctermfg=214
+au FileType go :highlight goErr ctermfg=208
 au FileType go :match goErr /\<err\>/
 au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
 
@@ -138,6 +143,11 @@ au QuickFixCmdPost *grep* cwindow
 
 " vim-gitgutter
 let g:gitgutter_diff_args = '-w'
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night',
+      \ }
 
 " neosnippet
 imap <C-s> <Plug>(neosnippet_expand_or_jump)
