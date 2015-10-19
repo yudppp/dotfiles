@@ -83,6 +83,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'scrooloose/syntastic'
 
 " Color
 NeoBundle 'tomasr/molokai'
@@ -128,8 +129,7 @@ let g:indent_guides_start_level=1
 let g:indent_guides_auto_colors=0
 au VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
 au VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
-let g:indent_guides_color_change_percent = 50
-let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 10
 
 " go setting
 au FileType go imap {<ENTER> {}<LEFT><CR><ESC><S-o>
@@ -137,6 +137,10 @@ au FileType go nmap <C-k> <Plug>(go-def-vertical)
 au FileType go :highlight goErr ctermfg=208
 au FileType go :match goErr /\<err\>/
 au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go']
+" let g:syntastic_go_checkers = ['go', 'golint']
 
 " fugitive
 au QuickFixCmdPost *grep* cwindow
