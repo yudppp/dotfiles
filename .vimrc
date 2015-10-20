@@ -15,6 +15,8 @@ set tabstop=4
 set shiftwidth=4
 set laststatus=2
 set noexpandtab
+set vb t_vb=
+set whichwrap=b,s,h,l,<,>,[,]
 
 "-------Format--------
 set autoindent
@@ -72,11 +74,7 @@ if has('lua')
     NeoBundle 'Shougo/neocomplete'
 endif
 
-NeoBundle 'rking/ag.vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/neomru.vim'
+" basic
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -84,6 +82,15 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
+
+" for unite
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'rking/ag.vim'
+
+" for golang
+NeoBundle 'fatih/vim-go'
 
 " Color
 NeoBundle 'tomasr/molokai'
