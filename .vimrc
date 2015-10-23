@@ -113,7 +113,9 @@ let g:unite_source_history_yank_enable =1
 let g:unite_split_rule = 'botright'
 nmap <silent> [unite]b :<C-u>Unite<Space>buffer<CR>
 nmap <silent> [unite]u :<C-u>Unite<Space>file<CR>
-nmap <silent> [unite]g :<C-u>Unite<Space>grep<CR>
+nmap <silent> [unite]g :<C-u>Unite<Space>grep:.<Space>-buffer-name=search-buffer<CR>
+nmap <silent> [unite]cg :<C-u>Unite<Space>grep:.<Space>-buffer-name=search-buffer<CR><C-R><C-W><CR>
+nmap <silent> [unite]r :<C-u>UniteResume<Space>search-buffer<CR>
 nmap <silent> [unite]o :<C-u>Unite<Space>outline<CR>
 nmap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
 
