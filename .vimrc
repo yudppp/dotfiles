@@ -83,6 +83,7 @@ NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle 'editorconfig/editorconfig-vim'
 
 " for unite
 NeoBundle 'Shougo/unite.vim'
