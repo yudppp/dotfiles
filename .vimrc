@@ -95,6 +95,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 
 " for unite
 NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/unite.vim', {'rev' : '75b43c4779cb21531ab79db8bd8615583eefd2bb'}
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'rking/ag.vim'
