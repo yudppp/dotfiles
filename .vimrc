@@ -25,6 +25,7 @@ set laststatus=2
 set noexpandtab
 set vb t_vb=
 set whichwrap=b,s,h,l,<,>,[,]
+set nowrap
 
 "-------Format--------
 set autoindent
