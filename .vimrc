@@ -14,7 +14,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,ucs-2le,ucs-2
 set showcmd
-set number
+" set number
 set cursorline
 set ruler
 set wildmenu
