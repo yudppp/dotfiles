@@ -199,4 +199,6 @@ NeoBundleCheck
 
 colorscheme molokai
 syntax on
+hi Visual ctermbg=240
+
 filetype plugin indent on
