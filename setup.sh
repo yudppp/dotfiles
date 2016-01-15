@@ -3,6 +3,8 @@ go get -u github.com/nsf/gocode
 brew install mercurial
 # go get -u code.google.com/p/rog-go/exp/cmd/godef
 go get -u github.com/kr/godep
+go get -u golang.org/x/tools/cmd/gorename
+
 brew install ag
 
 mkdir -p ~/.vim/bundle

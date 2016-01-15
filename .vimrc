@@ -161,6 +161,7 @@ let g:indent_guides_color_change_percent = 10
 " go setting
 au FileType go imap {<ENTER> {}<LEFT><CR><ESC><S-o>
 au FileType go nmap <C-k> <Plug>(go-def-vertical)
+au FileType go nmap <C-r> <Plug>(go-rename)
 au FileType go :highlight goErr ctermfg=208
 au FileType go :match goErr /\<err\>/
 au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
