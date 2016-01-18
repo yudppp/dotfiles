@@ -167,8 +167,7 @@ au FileType go :match goErr /\<err\>/
 au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
 let g:syntastic_mode_map = { 'mode': 'passive',
     \ 'active_filetypes': ['go'] }
-let g:syntastic_go_checkers = ['go']
-" let g:syntastic_go_checkers = ['go', 'golint']
+let g:syntastic_go_checkers = ['go', 'golint']
 
 " fugitive
 au QuickFixCmdPost *grep* cwindow
