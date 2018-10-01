@@ -1,11 +1,4 @@
-"                       _                                       _             
-"   _   _   _   _    __| |  _ __    _ __    _ __       __   __ (_)  _ __ ___  
-"  | | | | | | | |  / _` | | '_ \  | '_ \  | '_ \      \ \ / / | | | '_ ` _ \ 
-"  | |_| | | |_| | | (_| | | |_) | | |_) | | |_) |  _   \ V /  | | | | | | | |
-"   \__, |  \__,_|  \__,_| | .__/  | .__/  | .__/  (_)   \_/   |_| |_| |_| |_|
-"   |___/                  |_|     |_|     |_|                                
-" 
-
+"return" 2>&- || "exit"
 " coding: utf-8
 let mapleader = ","
 
@@ -96,7 +89,6 @@ NeoBundle 'editorconfig/editorconfig-vim'
 
 " for unite
 NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'Shougo/unite.vim', {'rev' : '75b43c4779cb21531ab79db8bd8615583eefd2bb'}
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'rking/ag.vim'
@@ -111,7 +103,6 @@ call neobundle#end()
 endif
 
 set wildignore+=vendor/*
-set wildignore+=_vendor/*
 
 " nerdtree
 nmap <silent><C-e> :NERDTreeToggle<CR>
