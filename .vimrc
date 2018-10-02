@@ -41,6 +41,10 @@ nmap   <Down>   <NOP>
 nmap   <Left>   <NOP>
 nmap   <Right>  <NOP>
 
+" escape
+nmap <C-j> <esc>
+nmap! <C-j> <esc>
+
 " always show tabline
 if exists('&background')
     set background=dark " dark or light
