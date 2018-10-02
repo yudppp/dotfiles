@@ -42,8 +42,8 @@ nmap   <Left>   <NOP>
 nmap   <Right>  <NOP>
 
 " escape
-nmap <C-j> <esc>
-nmap! <C-j> <esc>
+noremap <C-j> <esc>
+noremap! <C-j> <esc>
 
 " always show tabline
 if exists('&background')
