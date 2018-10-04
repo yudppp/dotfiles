@@ -42,6 +42,7 @@ nmap   <Left>   <NOP>
 nmap   <Right>  <NOP>
 
 " escape
+inoremap <silent> jj <ESC>
 noremap <C-j> <esc>
 noremap! <C-j> <esc>
 
@@ -111,6 +112,8 @@ set wildignore+=vendor/*
 " nerdtree
 nmap <silent><C-e> :NERDTreeToggle<CR>
 
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " unite.vim
 nmap    [unite]   <Nop>
 nmap    <C-u> [unite]
@@ -163,6 +166,7 @@ au BufRead,BufNewFile *.go setlocal ft=go ts=4 sw=4 expandtab
 let g:syntastic_mode_map = { 'mode': 'passive',
     \ 'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
+let g:go_fmt_command = "goimports"
 
 " fugitive
 au QuickFixCmdPost *grep* cwindow
