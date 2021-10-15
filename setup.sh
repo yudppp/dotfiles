@@ -19,3 +19,4 @@ git config --global alias.ba branch -a
 git config --global alias.co checkout
 git config --global alias.cp cherry-pick
 git config --global alias.st status
+git config --global alias.brr "for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
